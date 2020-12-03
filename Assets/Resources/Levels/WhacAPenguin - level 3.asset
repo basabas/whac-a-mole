@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fa8a1113f46f5f478430b22f32f0ec8, type: 3}
+  m_Name: WhacAPenguin - level 3
+  m_EditorClassIdentifier: 
+  _molePrefab: {fileID: 4182709014669313055, guid: 46d3dbccc5d920a4195bd9df476f9d33,
+    type: 3}
+  _layout: {x: 4, y: 8}
+  _spaceBetweenMoles: 2.5
+  _startTime: 40
+  _startInterval: 0.8
+  _speedIncrease: 0.002
