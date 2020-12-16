@@ -12,13 +12,13 @@ namespace bas.whacamole
 		private readonly InputController _inputController;
 		private readonly MoleController _moleController;
 
-		private float _startTime;
+		private readonly float _startTime;
 
 		public WhacAMoleGame(WhacAMoleSettings whacAMoleSetting, GameUI gameUI)
 		{
 			_gameUI = gameUI;
 			_startTime = whacAMoleSetting.StartTime;
-			_scoreController = new ScoreController(gameUI, whacAMoleSetting.SpeedIncrease);
+			_scoreController = new ScoreController(gameUI, whacAMoleSetting);
 			_inputController = new InputController(_scoreController);
 			_moleController = new MoleController(whacAMoleSetting, _scoreController);
 		}

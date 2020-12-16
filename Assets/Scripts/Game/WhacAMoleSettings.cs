@@ -16,14 +16,17 @@ namespace bas.whacamole
 		[SerializeField] private float _startTime;
 		[Tooltip("The time between moles spawn")]
 		[SerializeField] private float _startInterval;
-		[Tooltip("How much the interval increases/decreases on hit/miss")]
-		[SerializeField] private float _speedIncrease;
+		[Tooltip("How much the interval decreases on hit")]
+		[SerializeField] private float _intervalDecrease;
+		[Tooltip("How much the interval increases on miss")]
+		[SerializeField] private float _intervalIncrease;
 
 		public GameObject MolePrefab => _molePrefab;
 		public Vector2 Layout => _layout;
 		public float SpaceBetweenMoles => _spaceBetweenMoles;
 		public float StartInterval => _startInterval;
-		public float SpeedIncrease => _speedIncrease;
+		public float IntervalDecrease => _intervalDecrease;
+		public float IntervalIncrease => _intervalIncrease;
 		public float StartTime => _startTime;
 	}
 }

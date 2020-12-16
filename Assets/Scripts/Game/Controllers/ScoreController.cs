@@ -1,37 +1,31 @@
-﻿using UnityEngine;
-
-namespace bas.whacamole
+﻿namespace bas.whacamole
 {
 	public class ScoreController : IScoreController
 	{
 		public int Score { get; private set; }
 		public float TimeBetweenMoleSpawn { get; private set; } = 1;
-		private float _speedIncrease = 0.01f;
+
+		private float _intervalIncrease;
+		private float _intervalDecrease;
 		private GameUI _gameUI;
 
-		public ScoreController(GameUI gameUI, float speedIncrease)
+		public ScoreController(GameUI gameUI, WhacAMoleSettings whacAMoleSettings)
 		{
 			_gameUI = gameUI;
-			_speedIncrease = speedIncrease;
+			_intervalIncrease = whacAMoleSettings.IntervalIncrease;
+			_intervalDecrease = whacAMoleSettings.IntervalDecrease;
 		}
 
 		public void OnMoleHit(IMole mole)
 		{
 			Score++;
 			_gameUI.SetScore(Score);
-			TimeBetweenMoleSpawn -= TimeBetweenMoleSpawn * _speedIncrease;
+			TimeBetweenMoleSpawn += TimeBetweenMoleSpawn * _intervalDecrease;
 		}
 
 		public void OnMoleMiss()
 		{
-			TimeBetweenMoleSpawn += TimeBetweenMoleSpawn * _speedIncrease * 3;
-			Debug.Log("We have a miss " + TimeBetweenMoleSpawn);
+			TimeBetweenMoleSpawn += TimeBetweenMoleSpawn * _intervalIncrease;
 		}
-	}
-
-	public interface IScoreController : IOnMoleHitListener, IOnMoleMissListener
-	{
-		int Score { get; }
-		float TimeBetweenMoleSpawn { get; }
 	}
 }
