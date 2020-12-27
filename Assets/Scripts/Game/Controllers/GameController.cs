@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Bas.Whacamole.UI;
+using UnityEngine;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game.Controllers
 {
 	public class GameController : MonoBehaviour
 	{
@@ -17,14 +18,12 @@ namespace bas.whacamole
 			int result = await game.PlayGame();
 
 			GameStatistics gameStatistics = new GameStatistics(settings);
+			Debug.Log($"Game Ended, score was {result}");
 			if(result > gameStatistics.HighScore)
 			{
-				Debug.Log($"Game Ended, score was {result}. Gratz for getting the new high score.");
-				gameStatistics.AddNewScore(result);
-			}
-			else
-			{
-				Debug.Log($"Game Ended, score was {result}.");
+				Debug.Log("Gratz for getting the new high score.");
+				gameStatistics.SetNewScore(result);
+				_levelSelector.SetHighScore(gameStatistics);
 			}
 
 			_menuUI.SetActive(true);

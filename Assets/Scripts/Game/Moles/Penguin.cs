@@ -1,7 +1,8 @@
-﻿using System;
+﻿using Bas.Whacamole.Game.Interfaces;
+using System;
 using UnityEngine;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game.Moles
 {
 	public class Penguin : MonoBehaviour, IMole
 	{

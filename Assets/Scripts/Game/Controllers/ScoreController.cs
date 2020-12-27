@@ -1,13 +1,16 @@
-﻿namespace bas.whacamole
+﻿using Bas.Whacamole.Game.Interfaces;
+using Bas.Whacamole.UI;
+
+namespace Bas.Whacamole.Game.Controllers
 {
 	public class ScoreController : IScoreController
 	{
 		public int Score { get; private set; }
 		public float TimeBetweenMoleSpawn { get; private set; } = 1;
 
-		private float _intervalIncrease;
-		private float _intervalDecrease;
-		private GameUI _gameUI;
+		private readonly float _intervalIncrease;
+		private readonly float _intervalDecrease;
+		private readonly GameUI _gameUI;
 
 		public ScoreController(GameUI gameUI, WhacAMoleSettings whacAMoleSettings)
 		{

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game
 {
 	public class GameStatistics
 	{
@@ -14,7 +14,7 @@ namespace bas.whacamole
 			HighScore = PlayerPrefs.GetInt(_highScoreName);
 		}
 
-		public void AddNewScore(int score)
+		public void SetNewScore(int score)
 		{
 			if(score > HighScore)
 			{

@@ -1,4 +1,4 @@
-﻿namespace bas.whacamole
+﻿namespace Bas.Whacamole.Game.Interfaces
 {
 	public interface IOnMoleMissListener
 	{

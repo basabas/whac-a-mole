@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Bas.Whacamole.Game.Interfaces;
+using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game.Controllers
 {
 	public class InputController
 	{

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Bas.Whacamole.Game.Interfaces;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game.Controllers
 {
-	public class MoleController : IDisposable
+	public class MoleController : System.IDisposable
 	{
 		private readonly List<IMole> _inactiveMoles = new List<IMole>();
 		private readonly List<IMole> _activeMoles = new List<IMole>();
@@ -20,28 +19,19 @@ namespace bas.whacamole
 
 		private void CreateMoles(WhacAMoleSettings settings)
 		{
+			Vector2 halfLayout = (settings.Layout - Vector2.one) / 2f;
 			for(int x = 0; x < settings.Layout.x; x++)
 			{
-				float xPos = (-(settings.Layout.x - 1) / 2f + x) * settings.SpaceBetweenMoles;
+				float xPos = (x - halfLayout.x) * settings.SpaceBetweenMoles;
 				for(int z = 0; z < settings.Layout.y; z++)
 				{
-					float zPos = (-(settings.Layout.y - 1) / 2f + z) * settings.SpaceBetweenMoles;
-					IMole mole = CreateMole(settings.MolePrefab, new Vector3(xPos, 0, zPos));
+					float zPos = (z - halfLayout.y) * settings.SpaceBetweenMoles;
+					IMole mole = Object.Instantiate(settings.MolePrefab, new Vector3(xPos, 0, zPos), Quaternion.identity).GetComponent<IMole>();
 					mole.OnHitAction = OnMoleHit;
 					mole.Hide();
 					_inactiveMoles.Add(mole);
 				}
 			}
-		}
-
-		private IMole CreateMole(GameObject molePrefab, Vector3 position)
-		{
-			IMole mole = UnityEngine.Object.Instantiate(molePrefab, position, Quaternion.identity).GetComponent<IMole>();
-			if(mole == null)
-			{
-				throw new Exception("No IMole component found on gameobject");
-			}
-			return mole;
 		}
 
 		public void ShowMole()
@@ -56,7 +46,7 @@ namespace bas.whacamole
 			}
 		}
 
-		public void OnMoleHit(IMole mole)
+		private void OnMoleHit(IMole mole)
 		{
 			if(_activeMoles.Contains(mole))
 			{

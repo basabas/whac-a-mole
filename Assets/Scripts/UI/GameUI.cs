@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.UI
 {
 	public class GameUI : MonoBehaviour
 	{
@@ -18,22 +18,24 @@ namespace bas.whacamole
 		public void Hide()
 		{
 			gameObject.SetActive(false);
+			CancelInvoke(nameof(UpdateTime));
 		}
 
-		internal void SetScore(int score)
+		public void SetScore(int score)
 		{
 			_scoreText.text = $"Score - {score}";
 		}
 
-		internal void SetStartTime(float time)
+		public void StartTimer(float time)
 		{
 			_timeInMs = time;
+			InvokeRepeating(nameof(UpdateTime), 0, 1);
 		}
 
-		private void Update()
+		private void UpdateTime()
 		{
-			_timeInMs -= Time.deltaTime;
 			_timeText.text = $"Time left - {Mathf.RoundToInt(_timeInMs)}";
+			_timeInMs -= 1;
 		}
 	}
 }

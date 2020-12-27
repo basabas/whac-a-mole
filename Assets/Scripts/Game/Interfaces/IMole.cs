@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game.Interfaces
 {
 	public interface IMole
 	{

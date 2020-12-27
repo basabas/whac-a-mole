@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Bas.Whacamole.Game.Interfaces;
+using UnityEngine;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game
 {
 	[CreateAssetMenu(fileName = "New WhacAMoleSettings", menuName = "Bas/New WhacAMoleSettings", order = 1)]
 	public class WhacAMoleSettings : ScriptableObject
@@ -28,5 +29,14 @@ namespace bas.whacamole
 		public float IntervalDecrease => _intervalDecrease;
 		public float IntervalIncrease => _intervalIncrease;
 		public float StartTime => _startTime;
+
+		private void OnValidate()
+		{
+			if(_molePrefab && (_molePrefab.GetComponent<IMole>() == null && _molePrefab.GetComponentInChildren<IMole>() == null))
+			{
+				Debug.LogError($"You need a prefab with {nameof(IMole)} interface implementation.");
+				_molePrefab = null;
+			}
+		}
 	}
 }

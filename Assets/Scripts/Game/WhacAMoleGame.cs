@@ -1,8 +1,11 @@
-﻿using System.Diagnostics;
+﻿using Bas.Whacamole.Game.Controllers;
+using Bas.Whacamole.Game.Interfaces;
+using Bas.Whacamole.UI;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace bas.whacamole
+namespace Bas.Whacamole.Game
 {
 	public class WhacAMoleGame
 	{
@@ -26,7 +29,7 @@ namespace bas.whacamole
 		public async Task<int> PlayGame()
 		{
 			_gameUI.Show();
-			_gameUI.SetStartTime(_startTime);
+			_gameUI.StartTimer(_startTime);
 			Stopwatch stopwatch = Stopwatch.StartNew();
 
 			while(stopwatch.ElapsedMilliseconds < _startTime * 1000 && Application.isPlaying)
