@@ -14,11 +14,13 @@ namespace Bas.Whacamole.UI
 		[SerializeField] private List<WhacAMoleSettings> _whacAMoleSettings;
 		[SerializeField] private Text _highScoreText;
 
+#if UNITY_EDITOR
 		protected override void OnValidate()
 		{
 			base.OnValidate();
 			options = _whacAMoleSettings.Select(setting => new OptionData(setting.name)).ToList();
 		}
+#endif
 
 		public override void OnSelect(BaseEventData eventData)
 		{
