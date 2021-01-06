@@ -18,6 +18,7 @@ namespace Bas.Whacamole.UI
 		protected override void OnValidate()
 		{
 			base.OnValidate();
+			_whacAMoleSettings = Resources.LoadAll<WhacAMoleSettings>("Levels");
 			options = _whacAMoleSettings.Select(setting => new OptionData(setting.name)).ToList();
 		}
 #endif
